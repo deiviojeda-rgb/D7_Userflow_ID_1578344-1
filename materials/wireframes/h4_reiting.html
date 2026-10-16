@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каркас H4: рейтинг и подбор соперника</title>
+<!--
+  КАК ПРАВИТЬ ЭТОТ ФАЙЛ
+
+  1. Скопируй шаблон к себе:  cp materials/wireframes/h4_reiting.html src/wireframe.html
+  2. Открой src/wireframe.html в редакторе и в браузере. После каждого сохранения
+     обновляй страницу в браузере (F5).
+  3. Меняй только то, что ниже строки «ТВОЙ КАРКАС». Стили (<style>) не трогай.
+
+  Кирпичики — копируй строку целиком и меняй текст:
+    <div class="box">Блок с текстом</div>
+    <div class="btn">Кнопка</div>
+    <div class="btn main">Главная кнопка</div>
+    <p class="muted">Мелкая подпись</p>
+
+  Пометки:
+    class="... new"   — элемента не было, он появился (жёлтая рамка). Пример: <div class="btn new">Разобрать ошибку</div>
+    class="... gone"  — элемент убран (бледный и зачёркнутый). Ставь его в «Стало», чтобы было видно, что пропало.
+    <span class="mark">1</span> — номер пометки. Под каркасом, в «Что изменилось и зачем», пункт 1 объясняет её.
+
+  Ни картинок, ни ссылок на интернет, ни скриптов — каркас должен открываться у проверяющего без сети.
+-->
+<style>
+:root { --line: #8c959f; --soft: #f2f3f5; --text: #1f2328; --muted: #57606a; --new: #fff3b0; --newline: #bf8700; }
+* { box-sizing: border-box; }
+body { font-family: sans-serif; color: var(--text); background: #fff; margin: 0; padding: 16px; line-height: 1.35; }
+.stamp { position: fixed; top: 8px; right: 12px; font-size: 12px; border: 1px dashed var(--text); padding: 2px 6px; background: #fff; z-index: 10; }
+h1 { font-size: 20px; margin: 0 0 4px; padding-right: 180px; }
+h2 { font-size: 16px; margin: 20px 0 8px; }
+.check { border-left: 4px solid var(--newline); background: #fff8c5; padding: 8px 10px; margin: 12px 0; font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 13px; margin: 8px 0 16px; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 1000px) { .compare { grid-template-columns: 1fr; } }
+.screen { border: 2px solid var(--line); border-radius: 6px; padding: 10px; min-width: 0; }
+.screen > h2 { margin: 0 0 8px; }
+.bar { border: 1px solid var(--line); padding: 6px 8px; margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; }
+.row { display: flex; gap: 10px; align-items: flex-start; }
+.col { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.box { border: 1px solid var(--line); background: var(--soft); padding: 8px; font-size: 13px; }
+.board { aspect-ratio: 1; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px;
+         background: repeating-conic-gradient(#d0d7de 0 25%, #f6f8fa 0 50%) 0 0 / 25% 25%; }
+.board span { background: #fff; padding: 2px 6px; border: 1px solid var(--line); }
+.btn { border: 1px solid var(--text); border-radius: 4px; padding: 6px 10px; text-align: center; font-size: 13px; background: #fff; }
+.btn.main { font-weight: bold; border-width: 2px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tile { border: 1px solid var(--line); background: #fff; padding: 10px 4px; text-align: center; font-size: 15px; }
+.tile small { display: block; font-size: 11px; color: var(--muted); }
+.menu { border: 1px solid var(--line); background: #fff; padding: 4px 8px; font-size: 12px; }
+.menu div { padding: 2px 0; }
+.muted { color: var(--muted); font-size: 12px; margin: 0; }
+.new { outline: 3px dashed var(--newline); outline-offset: 1px; background: var(--new); }
+.gone { opacity: .35; text-decoration: line-through; }
+.mark { display: inline-block; min-width: 18px; height: 18px; border-radius: 9px; background: var(--text); color: #fff; font-size: 11px; font-weight: bold;
+        text-align: center; line-height: 18px; margin-right: 4px; text-decoration: none; }
+.fields p { margin: 4px 0 12px; }
+.fields b { display: block; }
+</style>
+</head>
+<body>
+<div class="stamp">Учебный прототип, не Lichess</div>
+
+<h1>H4. Первый рейтинг врёт: поиск соперника и рейтинг новичка</h1>
+<p class="muted">Задание 5. Каркас «было / стало». Шаблон: h4_reiting.html</p>
+
+<div class="check">«Было» — набросок по памяти. Сверь его со скриншотом из <code>materials/screens/</code> или с живым сайтом
+и поправь, если что-то не так: слева должен быть настоящий экран, который видит новичок.</div>
+
+<div class="legend">
+  <span class="btn new">новый элемент</span>
+  <span class="btn gone">убранный элемент</span>
+  <span><span class="mark">1</span> пометка — объяснение внизу</span>
+</div>
+
+<!-- ============================ ТВОЙ КАРКАС ============================ -->
+
+<div class="compare">
+
+<section class="screen">
+<h2>Было</h2>
+<div class="bar"><b>lichess</b><span>Играть</span><span>Задачи</span><span>Обучение</span><span>Смотреть</span><span>Сообщество</span><span>Инструменты</span><span style="margin-left:auto">ник_новичка</span></div>
+<div class="row">
+  <div class="col" style="flex:1.4">
+    <p class="muted">После нажатия на плитку быстрой игры</p>
+    <div class="box" style="text-align:center; padding:24px 8px">Блиц 3+0<br><b>Поиск соперника…</b><br><span class="muted">рейтинговая партия</span></div>
+    <div class="btn">Отмена</div>
+  </div>
+  <div class="col" style="flex:1">
+    <p class="muted">Профиль новичка после пяти партий</p>
+    <div class="box">Пуля 1500?</div>
+    <div class="box">Блиц 1164? <span class="muted">5 партий</span></div>
+    <div class="box">Рапид 1500?</div>
+    <div class="box">Задачи 1500?</div>
+    <div class="box">Последние партии: поражение, поражение, победа, поражение, поражение</div>
+  </div>
+</div>
+</section>
+
+<section class="screen">
+<h2>Стало</h2>
+<!-- Здесь пока копия «Было». Меняй: добавляй элементы с class="new", убранные помечай class="gone",
+     ставь пометки <span class="mark">1</span>. -->
+<div class="bar"><b>lichess</b><span>Играть</span><span>Задачи</span><span>Обучение</span><span>Смотреть</span><span>Сообщество</span><span>Инструменты</span><span style="margin-left:auto">ник_новичка</span></div>
+<div class="row">
+  <div class="col" style="flex:1.4">
+    <p class="muted">После нажатия на плитку быстрой игры</p>
+    <div class="box" style="text-align:center; padding:24px 8px">Блиц 3+0<br><b>Поиск соперника…</b><br><span class="muted">рейтинговая партия</span></div>
+    <div class="btn">Отмена</div>
+  </div>
+  <div class="col" style="flex:1">
+    <p class="muted">Профиль новичка после пяти партий</p>
+    <div class="box">Пуля 1500?</div>
+    <div class="box">Блиц 1164? <span class="muted">5 партий</span></div>
+    <div class="box">Рапид 1500?</div>
+    <div class="box">Задачи 1500?</div>
+    <div class="box">Последние партии: поражение, поражение, победа, поражение, поражение</div>
+  </div>
+</div>
+</section>
+
+</div>
+
+<h2>Что изменилось и зачем</h2>
+<ol>
+  <li>Пометка 1: что изменилось, для кого и какую гипотезу это проверяет.</li>
+</ol>
+
+<div class="fields">
+<h2>Три вопроса к каркасу</h2>
+<p><b>Кто видит изменение?</b> Только новички или все? Как сайт понимает, что человек — новичок?</p>
+<p><b>Как от этого отказаться?</b> Где закрыть, пропустить или скрыть, и сколько это кликов.</p>
+<p><b>Новые строки текста.</b> Выпиши каждую новую надпись — их будут переводить на все языки.</p>
+</div>
+
+</body>
+</html>
