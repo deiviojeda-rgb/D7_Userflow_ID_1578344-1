@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Fan Portal</title>
+    <style>
+        :root {
+            --bg-color: #161512;
+            --card-bg: #262421;
+            --text-color: #bababa;
+            --accent-color: #cc7d24;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vi;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 90%;
+        }
+
+        /* Lichess SVG Logo Wrapper */
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem auto;
+            background: transparent;
+        }
+
+        .logo-container svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--white);
+            transition: fill 0.3s ease;
+        }
+
+        .logo-container:hover svg {
+            fill: var(--accent-color);
+        }
+
+        h1 {
+            color: var(--white);
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            color: #999;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            background-color: #b56f1e;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Official Lichess Knight Logo Vector -->
+        <div class="logo-container">
+            <svg viewBox="0 0 24 24" xmlns="http://w3.org">
+                <path d="M19.31 16.9c.44-.75.69-1.62.69-2.55 0-2.5-1.57-4.63-3.78-5.46.22-.67.34-1.39.34-2.14 0-3.18-2.12-5.85-5-6.61-.13-.03-.25-.07-.38-.09-.34-.04-.69-.05-1.04-.05-4.42 0-8 3.58-8 8 0 .86.14 1.69.39 2.47-.28.45-.48.97-.59 1.53-.14.73-.08 1.48.16 2.19l.06.16c.33.82.89 1.53 1.61 2.05.53.38 1.15.65 1.83.77.4.07.82.11 1.25.11h6.22c.7 0 1.37-.16 1.97-.44.75-.35 1.39-.88 1.87-1.54zM8.5 7.5C7.67 7.5 7 6.83 7 6s.67-1.5 1.5-1.5S10 5.17 10 6s-.67 1.5-1.5 1.5z"/>
+            </svg>
+        </div>
+
+        <h1>lichess.org</h1>
+        <p>Free. Open source. No ads. High-quality chess for everyone, forever.</p>
+        
+        <a href="https://lichess.org" target="_blank" class="btn">Play Now</a>
+    </div>
+
+</body>
+</html>
